@@ -35,16 +35,28 @@ header {
     justify-content: center;
   }
   
+  .menu li.active {
+    margin: 0 10px;
+    background-color: #4CAF50;
+  
+  }
   .menu li {
     margin: 0 10px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #FFF;
+    border: 1px solid #4CAF50;
     border-radius: 10px;
-  
+    padding: 10px 20px;
+    
   }
+  
   
   .menu a {
-    color: white;
+    padding: 10px 20px;
+    color: #4CAF50;
     text-decoration: none;
+    vertical-align: middle;
   }
-  
+
+  .menu li.active a {
+    color: #fff;
+  }
