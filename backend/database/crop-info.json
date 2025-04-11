@@ -1,0 +1,11 @@
+[
+  {
+    "id": "8c54e3c1-b79e-4d9d-ae7f-a8aaf6a1c3c2",
+    "userId": "b33683f6-88e6-475d-9d7e-ae916ff6a8dc",
+    "cropId": "111",
+    "cropType": "wheat",
+    "soilType": "fertile",
+    "waterRequired": "34",
+    "startTime": "2025-04-17T02:26"
+  }
+]

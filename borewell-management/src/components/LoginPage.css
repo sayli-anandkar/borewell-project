@@ -7,7 +7,7 @@
   }
   
   .bg-video {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -51,5 +51,23 @@
   
   .auth-container button:hover {
     background-color: #388e3c;
+  }
+ 
+  .message {
+    margin-bottom: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .message.success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .message.error {
+    background-color: #f8d7da;
+    color: #721c24;
   }
   

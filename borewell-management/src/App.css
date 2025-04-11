@@ -1,60 +1,182 @@
-/* src/App.css */
+/* General Body and Font Styles */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
   background-color: #f4f4f9;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Code Block Styling */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Container Styling */
 .container {
   max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;      
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: rgb(255 255 255 / 12%);
+  margin: 30px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Form and Input Styling */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="datetime-local"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Text Sections Below Forms */
+.text-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.5); /* Light transparent background */
+  border-radius: 8px;
+  backdrop-filter: blur(5px); /* Blur effect for frosted-glass look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.text-section p {
+  color: #e1e1e1; /* Light gray text for readability */
+  font-size: 16px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Subtle text shadow */
+}
+
+/* Scrollable Container for Data */
+.scrollable-container {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #FFF;
+  border-radius: 10px;
+}
+
+/* Scrollbar Styling */
+.scrollable-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Header and Titles */
 h2 {
-  color: #4caf50;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 36px;
+  -webkit-text-stroke: 1px black; /* Stroke effect for h2 */
+  color: white; /* Text color */
 }
 
 h3 {
-  color: #333;
+  color: #FFF;
 }
 
-.input-field {
-  width: 100%;
+/* Menu Styles */
+.menu {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
+  gap: 10px;
 }
 
-input[type="datetime-local"] {
-  padding: 8px;
+.menu li {
+  border: 1px solid #4CAF50;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: background-color 0.2s;
 }
 
-button.btn {
-  background-color: #4caf50;
+.menu li.active,
+.menu li:hover {
+  background-color: #4CAF50;
+}
+
+.menu a {
+  display: block;
+  text-decoration: none;
+  padding: 10px 16px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.menu li.active a,
+.menu li:hover a {
   color: #fff;
+}
+
+.menu-head {
+  display: flex;
+  justify-content: space-around;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+/* Button Styles for Submit Actions */
+button.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
   border: none;
-  padding: 10px 20px;
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 4px;
   width: 100%;
+  transition: background-color 0.2s ease-in-out;
 }
 
 button.btn:hover {
   background-color: #45a049;
 }
 
-.crop-list {
-  margin-top: 20px;
-}
-
+/* Crop List Item Styles */
 .crop-item {
   background-color: #f9f9f9;
   padding: 10px;
@@ -65,4 +187,20 @@ button.btn:hover {
 
 .crop-item p {
   margin: 5px 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .auth-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
 }

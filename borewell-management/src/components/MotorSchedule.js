@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const getCurrentDateTimeLocal = () => {
   const now = new Date();
@@ -15,6 +16,28 @@ const MotorSchedule = () => {
     speed: ''
   });
 
+  const userId = localStorage.getItem('userId'); // Get the current user ID
+
+  useEffect(() => {
+    // Fetch the motor schedules data for the current user on component mount
+    axios.get(`http://localhost:5000/motor-schedule/${userId}`)
+      .then((response) => {
+        setMotorSchedules(response.data); // Set motor schedules for the user
+      })
+      .catch((err) => {
+        console.error('Error fetching motor schedules:', err);
+      });
+  }, [userId]); // Run once when component mounts
+
+const handleDelete = async (id) => {
+  try {
+    await axios.delete(`http://localhost:5000/motor-schedule/${id}/${userId}`);
+    setMotorSchedules(prev => prev.filter(s => s.id !== id));
+  } catch (err) {
+    console.error('Delete error', err);
+  }
+};
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewSchedule({ ...newSchedule, [name]: value });
@@ -27,13 +50,25 @@ const MotorSchedule = () => {
     if (!borewellId || !waterAmount || !startTime || !speed) return;
     if (isNaN(waterAmount) || waterAmount <= 0 || isNaN(speed) || speed <= 0) return;
 
-    setMotorSchedules([...motorSchedules, newSchedule]);
-    setNewSchedule({
-      borewellId: '',
-      waterAmount: '',
-      startTime: getCurrentDateTimeLocal(),
-      speed: ''
-    });
+    const motorData = {
+      ...newSchedule,
+      userId: userId // Make sure the userId is attached to the new motor schedule data
+    };
+
+    axios.post('http://localhost:5000/motor-schedule', motorData)
+      .then((response) => {
+        // After adding, fetch the latest data again to keep it in sync
+        setMotorSchedules((prevSchedules) => [...prevSchedules, response.data.entry]); // Add the new schedule locally
+        setNewSchedule({
+          borewellId: '',
+          waterAmount: '',
+          startTime: getCurrentDateTimeLocal(),
+          speed: ''
+        }); // Clear the form
+      })
+      .catch((err) => {
+        console.error('Error scheduling motor:', err);
+      });
   };
 
   return (
@@ -70,7 +105,7 @@ const MotorSchedule = () => {
         <button type="submit">Schedule Motor</button>
       </form>
 
-      <div className="schedule-list">
+      <div className="scrollable-container">
         <h3>Motor Schedules:</h3>
         {motorSchedules.map((schedule, index) => (
           <div key={index} className="schedule-item">
@@ -78,6 +113,7 @@ const MotorSchedule = () => {
             <p>Water Amount: {schedule.waterAmount} liters</p>
             <p>Speed: {schedule.speed} liters/hour</p>
             <p>Start Time: {new Date(schedule.startTime).toLocaleString()}</p>
+            <button onClick={() => handleDelete(schedule.id)}>Delete</button>
           </div>
         ))}
       </div>
