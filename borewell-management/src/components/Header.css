@@ -1,0 +1,28 @@
+/* src/components/Header.css */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin-bottom: 20px;
+  }
+  
+  header input {
+    margin-right: 10px;
+    padding: 10px;
+  }
+  
+  header button {
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  header button:hover {
+    background-color: #006F8A;
+  }
